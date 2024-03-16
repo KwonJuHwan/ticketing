@@ -7,8 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDate;
+
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +23,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String detailTitle;
+    private String ticketTitle;
 
     private LocalDate startDate;
 
@@ -40,5 +43,19 @@ public class Ticket {
     @JoinColumn(name = "show_id")
     private Show show;
 
-
+    @Builder
+    public Ticket(Long id, String ticketTitle, LocalDate startDate, LocalDate endDate,
+                  String place, Integer showTime, String totalPrice,
+                  String showInformation, String sellInformation, Show show) {
+        this.id = id;
+        this.ticketTitle = ticketTitle;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.place = place;
+        this.showTime = showTime;
+        this.totalPrice = totalPrice;
+        this.showInformation = showInformation;
+        this.sellInformation = sellInformation;
+        this.show = show;
+    }
 }
